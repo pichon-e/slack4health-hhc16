@@ -26,12 +26,6 @@
           "dosage": "1000mg",
           "forme": "comprimé",
           "posologie": "1-1-1"
-        },
-        {
-          "name": "Tiatec",
-          "dosage": "2.5mg",
-          "forme": "comprimé",
-          "posologie": "1-0-0"
         }
       ]
     };  
