@@ -6,38 +6,16 @@
     .controller('PrescriptionController', PrescriptionController);
 
   /** @ngInject */
-  function PrescriptionController($scope) {
+  function PrescriptionController($scope, $mdDialog) {
     $scope.medicaments = [
         {
           "name": "Diamicron",
           "dosage": "30mg",
           "forme": "comprimé",
           "posologie": "3-0-0"
-        },
-        {
-          "name": "Januvia",
-          "dosage": "100mg",
-          "forme": "comprimé",
-          "posologie": "1-0-0"
-        },
-        {
-          "name": "Metformine",
-          "dosage": "1000mg",
-          "forme": "comprimé",
-          "posologie": "1-1-1"
         }
       ];  
 
-    $scope.todos = [
-        {
-          'name': 'Lettuce',
-          'dose': 'Composite'
-        },
-        {
-          'name': 'Spinach',
-          'dose': 'Goosefoot'
-        }
-      ];
     var self = this;
 
     self.readonly = false;
@@ -82,52 +60,69 @@
       var lowercaseQuery = angular.lowercase(query);
 
       return function filterFn(pharmaceuticals) {
-        return (pharmaceuticals._lowername.indexOf(lowercaseQuery) === 0) ||
-            (pharmaceuticals._lowertype.indexOf(lowercaseQuery) === 0);
+        return (pharmaceuticals._lowername.indexOf(lowercaseQuery) === 0);
       };
 
     }
 
-    $scope.addPharmaceuticals = function(){
-    	if (self.selectedVegetables.length == 0)
-    		return;
-    	else
-    	{
-    		var i = 0;
-    		while (i < self.selectedVegetables.length)
-    			$scope.todos.push(self.selectedVegetables[i++]);
-    		self.selectedVegetables = [];
-    	}
+    function getMedicamentsNames()
+    {
+      var names = "";
+      var i = 0;
+      while (i < self.selectedVegetables.length)
+      {
+        names += self.selectedVegetables[i++].name;
+        if (i != self.selectedVegetables.length)
+          names += ", ";
+      }
+      return names;
+    }
 
+    $scope.addPharmaceuticals = function(ev){
+      if (self.selectedVegetables.length == 0)
+        return;
+       var confirm = $mdDialog.confirm()
+          .title('Voulez vous ajouter ces médicaments ?')
+          .content(getMedicamentsNames())
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Oui')
+          .cancel('Non');
+
+    $mdDialog.show(confirm).then(function() {
+        var i = 0;
+        while (i < self.selectedVegetables.length)
+          $scope.medicaments.push(self.selectedVegetables[i++]);
+        self.selectedVegetables = [];
+    }, function() {
+        self.selectedVegetables = [];
+    });
     }
 
     function loadPharmaceuticals() {
       var pharmaceuticals = [
         {
-          'name': 'Broccoli',
-          'dose': 'Brassica'
+          "name": "Diamicron",
+          "dosage": "30mg",
+          "forme": "comprimé",
+          "posologie": "3-0-0"
         },
         {
-          'name': 'Cabbage',
-          'dose': 'Brassica'
+          "name": "Januvia",
+          "dosage": "100mg",
+          "forme": "comprimé",
+          "posologie": "1-0-0"
         },
         {
-          'name': 'Carrot',
-          'dose': 'Umbelliferous'
-        },
-        {
-          'name': 'Lettuce',
-          'dose': 'Composite'
-        },
-        {
-          'name': 'Spinach',
-          'dose': 'Goosefoot'
+          "name": "Metformine",
+          "dosage": "1000mg",
+          "forme": "comprimé",
+          "posologie": "1-1-1"
         }
-      ];
+      ];  
 
       return pharmaceuticals.map(function (pharm) {
         pharm._lowername = pharm.name.toLowerCase();
-        pharm._lowertype = pharm.dose.toLowerCase();
         return pharm;
       });
     }
