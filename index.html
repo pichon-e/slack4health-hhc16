@@ -8,9 +8,17 @@
 
   <body ng-app="Slack4Health" ng-cloak ng-controller="HomepageCtrl">
 
-    <div id="title">
-      {{ title }}
-    </div>
+      <div id="content" layout="row" layout-align="center center">
+        <div class="test" flex="30">
+          <md-button class="md-raised" aria-label="description">content</md-button>
+        </div>
+        <div class="test" flex="30">
+          <md-button class="md-raised" aria-label="description">content</md-button>
+        </div>
+        <div class="test" flex="30">
+          <md-button class="md-raised" aria-label="description">content</md-button>
+        </div>
+      </div>
 
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="node_modules/angular/angular.min.js"></script>
