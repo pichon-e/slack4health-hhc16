@@ -7,7 +7,12 @@
 
   /** @ngInject */
 
-  function ChatController($scope, $mdDialog) {
+  function ChatController($scope, $mdDialog, $filter, $localStorage) {
+    $scope.$storage = $localStorage;
+    if (!$scope.$storage.messages) {
+      $scope.$storage.messages = [];
+    }
+
     var client = XMPP.createClient({
       jid: 'user1@localhost',
       password: 'user1',
@@ -21,7 +26,6 @@
     });
 
     client.on('chat', function(msg) {
-      console.log(msg);
       $scope.messages.push({
         avatar: '../assets/images/sample-avatar2.png',
         date: '19/03/2016 : 16h58',
@@ -168,9 +172,27 @@
         me:true
       }
     ]
+    $scope.messages = $scope.messages.concat($scope.$storage.messages);
 
-    $scope.messagePost = {
-      content: ''
-    };
+    $scope.messagePost = "";
+
+    $scope.sendMessage = function() {
+      client.sendMessage({
+        from: 'user1@localhost',
+        to: 'user2@localhost',
+        body: $scope.messagePost
+      });
+      var newMessage = {
+        avatar: avatarDr,
+        date: $filter('date')(new Date(), "dd/MM/yyyy : HH'h'mm"),
+        job: 'Médecin',
+        name: 'Frédéric HOUSE',
+        content: $scope.messagePost,
+        me:false
+      };
+      $scope.messages.push(newMessage);
+      $scope.$storage.messages.push(newMessage);
+      $scope.messagePost = "";
+    }
 }
 })();

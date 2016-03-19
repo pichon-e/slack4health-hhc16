@@ -30,16 +30,16 @@
 					<form name="userForm">
 						<md-input-container class="md-block" flex-gt-sm>
 							<label>Votre message</label>
-							<input ng-model="messagePosted">
+							<input type="text" ng-model="messagePost" />
 						</md-input-container>
 					</form>
 				</div>
 				<div flex="10">
-					<i class="material-icons">send</i>
+					<i class="material-icons" ng-click="sendMessage()">send</i>
 				</div>
 			</div>
 
-			
+
 		</md-card-footer>
 
 	</md-card>
