@@ -6,6 +6,9 @@
 // endbower
 
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,300,700);
+
 
 @font-face {
   font-family: 'Material Icons';
@@ -18,6 +21,15 @@
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff) format('woff'),
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
+
+$black:         #1a1a1a ;
+$green:         #8bc34a ;
+$greenLight:     #a2c671 ;
+$greenDark:        #71993c ;
+$red:            #f44336 ;
+$redLight:        #ef5552 ;
+$redDark:        #c12b2b ;
+$white:         #ffffff;
 
 .material-icons {
   font-family: 'Material Icons';
@@ -45,7 +57,7 @@
 }
 
 html {
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Open Sans';
   width: 100%;
   height: 100vh;
 }
@@ -89,6 +101,23 @@ section.jumbotron {
       float: right;
       width: 100px;
     }
+  }
+}
+
+header {
+  padding-left: 30px;
+  width: 100%;
+  height: 60px;
+  background: $black;
+  color: $white;
+  line-height: 60px;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 20px;
+
+  span {
+    color: $green;
   }
 }
 
