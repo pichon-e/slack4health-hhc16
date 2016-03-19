@@ -25,9 +25,9 @@
   font-style: normal;
   font-size: 24px;  /* Preferred icon size */
   display: inline-block;
-  width: 1em;
-  height: 1em;
-  line-height: 1;
+  width: 2em;
+  height: 2em;
+  line-height: 2;
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;
@@ -46,6 +46,8 @@
 
 html {
   font-family: 'Roboto Slab', serif;
+  width: 100%;
+  height: 100vh;
 }
 
 [layout=row] {
@@ -88,6 +90,31 @@ section.jumbotron {
       width: 100px;
     }
   }
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #f44336;
+
+  li {
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    list-style-type: none;
+
+    i {
+      color: white;
+    }
+  }
+      .active {
+        width: 100%;
+        border-bottom: 5px solid white;
+    }
+
+
 }
 
 /**

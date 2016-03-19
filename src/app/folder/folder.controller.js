@@ -3,10 +3,10 @@
 
   angular
     .module('slack4healthHhc')
-    .controller('ChatController', ChatController);
+    .controller('FolderController', FolderController);
 
   /** @ngInject */
-  function ChatController($scope) {
+  function FolderController($scope) {
 
   }
 })();

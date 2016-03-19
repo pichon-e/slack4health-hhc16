@@ -17,6 +17,21 @@
         url: '/chat',
         templateUrl: 'app/chat/chat.html',
         controller: 'ChatController'
+      })
+      .state('bio', {
+        url: '/bio',
+        templateUrl: 'app/bio/bio.html',
+        controller: 'BioController'
+      })
+      .state('prescription', {
+        url: '/prescription',
+        templateUrl: 'app/prescription/prescription.html',
+        controller: 'PrescriptionController'
+      })
+      .state('folder', {
+        url: '/folder',
+        templateUrl: 'app/folder/folder.html',
+        controller: 'FolderController'
       });
 
     $urlRouterProvider.otherwise('/');

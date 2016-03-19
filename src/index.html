@@ -23,8 +23,40 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <header>
+        
+    </header>
     <div ui-view></div>
+
+    <footer layout="row">
+
+        <li flex="20" ui-sref-active="active">
+            <a ui-sref="rooms">
+                <i class="material-icons">hotel</i>
+            </a>
+        </li>
+        <li flex="20" ui-sref-active="active">
+            <a ui-sref="chat">
+                <i class="material-icons">message</i>
+            </a>
+        </li>
+        <li flex="20" ui-sref-active="active">
+            <a ui-sref="bio">
+                <i class="material-icons">insert_chart</i>
+            </a>
+        </li>
+        <li flex="20" ui-sref-active="active">
+            <a ui-sref="prescription">
+                <i class="material-icons">mode_edit</i>
+            </a>
+        </li>
+        <li flex="20" ui-sref-active="active">
+            <a ui-sref="folder">
+               <i class="material-icons">folder_shared</i>
+            </a>
+        </li>
+        
+    </footer>
 
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

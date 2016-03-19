@@ -17,6 +17,9 @@
     },
     {
         name: "Chambre 2"
+    },
+    {
+      name: "Chambre vide"
     }]
   }
 })();
