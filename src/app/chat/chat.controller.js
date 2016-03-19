@@ -7,7 +7,7 @@
 
   /** @ngInject */
  
-  function ChatController($scope, $mdDialog) {
+  function ChatController($scope, $mdDialog, $mdSidenav) {
   $scope.hide = function() {
     $mdDialog.hide();
   };
@@ -20,7 +20,6 @@
 
  $scope.showTabDialog = function(ev) {
   
-
    $scope.doctors = [
         {
       specialization: "Généraliste",
@@ -116,6 +115,8 @@
 
     $scope.test = false;
 
+    $scope.toggleRight = buildToggler('right');
+
     $scope.messages = [
       {
         avatar: avatarNurse,
@@ -146,5 +147,14 @@
     $scope.messagePost = {
       content: ''
     };
+
+    function buildToggler(navID) {
+      return function() {
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+          });
+      }
+    }
 };
 })();
