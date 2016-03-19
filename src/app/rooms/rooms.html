@@ -11,19 +11,20 @@
           <md-list-item class="md-2-line" ng-repeat="room in rooms">
             <img
             ng-if="room.patient"
-            src="http://placehold.it/80x80"
-            class="md-avatar"
+            src="assets/images/{{room.patient.picture}}"
             alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
             />
             <img
             ng-if="!room.patient"
-            src="assets/images/icon-bed.png"
-            class="md-avatar"
+            src="assets/images/empty-room.jpg"
             alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+            class="half-opacity"
             />
             <div class="md-list-item-text" layout="column">
-              <h3>{{ room.name }}</h3>
-              <p>{{ room.patient.last_name | uppercase }} {{ room.patient.first_name }}</p>
+              <div ng-if="room.patient" class="isavailable no"></div>
+              <div ng-if="!room.patient" class="isavailable yes"></div>
+              <h3>Chambre N°{{ room.number }}</h3>
+              <p>{{ room.patient.first_name }} {{ room.patient.last_name | uppercase }}</p>
             </div>
           </md-list-item>
       </md-list>
