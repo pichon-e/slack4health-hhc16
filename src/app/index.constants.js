@@ -4,7 +4,6 @@
 
   angular
     .module('slack4healthHhc')
-    .constant('malarkey', malarkey)
     .constant('moment', moment);
 
 })();
