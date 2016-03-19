@@ -1,0 +1,29 @@
+<md-dialog aria-label="Liste de Medecins">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Liste de Medecins</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+
+      </div>
+
+    </md-toolbar>
+     <md-dialog-content style="max-width:800px;max-height:810px; ">
+    <md-content class="md-padding">
+      <md-list flex>
+        <md-list-item class="md-3-line" ng-repeat="item in doctors">
+          <a href="#">
+            <div class="md-list-item-text" layout="column">
+              <h3 class="md-display-2"><strong>{{ item.specialization }}</strong></h3>
+              <h4 class="md-display-2">{{ item.firstName }} {{ item.lastName }}</h4>
+            </div>
+          </a>
+          </md-list-item>
+        </md-content>
+      </md-list>
+    </md-dialog-content>
+  </form>
+</md-dialog>
