@@ -66,12 +66,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin-right: 25px;
-    margin-top: 18px;
   }
 
   i {
-    padding-top: 20px;
+    padding-top: 15px;
     text-align: center;
     height: 100%;
     line-height: 100%;
@@ -90,4 +88,15 @@
     padding: 0;
   }
 
+  .md-sidenav-right, .md-sidenav-right md-content {
+    background-color: #555555;
+  } 
+
+}
+
+md-dialog.full-dialog {
+  max-height: 100%;
+  max-width: 100%;
+  width: 95%;
+  height: 95%;
 }

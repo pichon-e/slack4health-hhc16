@@ -127,7 +127,6 @@
       ];
 
       $mdDialog.show({
-        controller: ChatController,
         templateUrl: 'app/chat/medecinChoice.tmpl.html',
         parent: angular.element(document.body),
         targetEvent: ev,
