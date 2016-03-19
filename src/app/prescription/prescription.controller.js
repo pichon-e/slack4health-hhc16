@@ -7,8 +7,7 @@
 
   /** @ngInject */
   function PrescriptionController($scope) {
-    $scope.medicaments = {
-      "medicaments": [
+    $scope.medicaments = [
         {
           "name": "Diamicron",
           "dosage": "30mg",
@@ -27,8 +26,7 @@
           "forme": "comprimé",
           "posologie": "1-1-1"
         }
-      ]
-    };  
+      ];  
 
   }
 })();
