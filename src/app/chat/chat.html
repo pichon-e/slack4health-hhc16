@@ -1,7 +1,7 @@
 <div id="chat" class="main-wrapper">
 
     <md-button class="medecin-button md-primary md-raised" ng-click="showTabDialog($event)">
-      	Contacter un Medecin
+      	Contacts
     </md-button>
 
 	<md-card>
@@ -11,15 +11,18 @@
 		</md-card-header>
 
 		<md-card-content>
-			<md-list flex>
-				<md-list-item class="md-3-line" ng-repeat="message in messages">
-				<img ng-src="{{ message.avatar }}" class="md-avatar" alt="Photo" />
-				<div class="md-list-item-text" layout="column">
+
+			<md-card ng-repeat="message in messages" class="message" 
+				ng-class="message.me ? 'right' : 'left'" 
+				layout="column" layout-align="center center">
+<!-- 				<img flex="30" ng-src="{{ message.avatar }}" class="md-avatar" alt="Photo" /> -->
+				<div flex="70" class="md-list-item-text" layout="column">
 					<h3><strong>{{ message.name }}</strong> <em>{{ message.job }}</em></h3>
 					<h4>{{ message.date }}</h4>
 					<p>{{ message.content }}</p>
 				</div>
-			</md-list-item>
+			</md-card>
+
 		</md-card-content>
 
 		<md-card-footer>
