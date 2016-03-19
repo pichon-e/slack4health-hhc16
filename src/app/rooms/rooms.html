@@ -1,8 +1,23 @@
 <div class="content">
-    <md-list>
-      <md-list-item class="md-2-line" ng-repeat="room in rooms">
-        {{room.name}}
-      </md-list-item>
+    <md-list flex>
+        <md-list-item class="md-2-line" ng-repeat="room in rooms">
+          <img
+          ng-if="room.patient"
+          src="http://placehold.it/80x80"
+          class="md-avatar"
+          alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+          />
+          <img
+          ng-if="!room.patient"
+          src="assets/images/icon-bed.png"
+          class="md-avatar"
+          alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+          />
+          <div class="md-list-item-text" layout="column">
+            <h3>{{ room.name }}</h3>
+            <h4>{{ room.patient.last_name | uppercase }} {{ room.patient.first_name }}</h4>
+          </div>
+        </md-list-item>
     </md-list>
 
 </div>
