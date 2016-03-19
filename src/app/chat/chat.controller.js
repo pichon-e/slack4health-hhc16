@@ -6,20 +6,46 @@
     .controller('ChatController', ChatController);
 
   /** @ngInject */
- 
+
   function ChatController($scope, $mdDialog) {
-  $scope.hide = function() {
-    $mdDialog.hide();
-  };
-  $scope.cancel = function() {
-    $mdDialog.cancel();
-  };
-  $scope.answer = function(answer) {
-    $mdDialog.hide(answer);
-  };
+    var client = XMPP.createClient({
+      jid: 'user1@localhost',
+      password: 'user1',
+      transport: 'websocket',
+      wsURL: 'ws://localhost:5280/websocket'
+    });
+
+    client.on('session:started', function () {
+      client.getRoster();
+      client.sendPresence();
+    });
+
+    client.on('chat', function(msg) {
+      console.log(msg);
+      $scope.messages.push({
+        avatar: '../assets/images/sample-avatar2.png',
+        date: '19/03/2016 : 16h58',
+        job: 'Infirmier(e)',
+        name: 'Nathalie DUPOND',
+        content: msg.body
+      });
+      $scope.$apply();
+    });
+
+    client.connect();
+
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
 
  $scope.showTabDialog = function(ev) {
-  
+
 
    $scope.doctors = [
         {
@@ -141,5 +167,5 @@
     $scope.messagePost = {
       content: ''
     };
-};
+}
 })();
