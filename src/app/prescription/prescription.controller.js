@@ -95,7 +95,6 @@
           $scope.medicaments.push(self.selectedVegetables[i++]);
         self.selectedVegetables = [];
     }, function() {
-        self.selectedVegetables = [];
     });
     }
 
