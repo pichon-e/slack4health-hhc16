@@ -1,23 +1,34 @@
-<div id="rooms">
-    <md-list flex>
-        <md-list-item class="md-2-line" ng-repeat="room in rooms">
-          <img
-          ng-if="room.patient"
-          src="http://placehold.it/80x80"
-          class="md-avatar"
-          alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
-          />
-          <img
-          ng-if="!room.patient"
-          src="assets/images/icon-bed.png"
-          class="md-avatar"
-          alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
-          />
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ room.name }}</h3>
-            <p>{{ room.patient.last_name | uppercase }} {{ room.patient.first_name }}</p>
-          </div>
-        </md-list-item>
-    </md-list>
+<div id="rooms" class="main-wrapper">
+
+  <md-card>
+
+    <md-card-header>
+      <h1>Liste des chambres</h1>
+    </md-card-header>
+
+    <md-card-content>
+      <md-list flex>
+          <md-list-item class="md-2-line" ng-repeat="room in rooms">
+            <img
+            ng-if="room.patient"
+            src="http://placehold.it/80x80"
+            class="md-avatar"
+            alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+            />
+            <img
+            ng-if="!room.patient"
+            src="assets/images/icon-bed.png"
+            class="md-avatar"
+            alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+            />
+            <div class="md-list-item-text" layout="column">
+              <h3>{{ room.name }}</h3>
+              <p>{{ room.patient.last_name | uppercase }} {{ room.patient.first_name }}</p>
+            </div>
+          </md-list-item>
+      </md-list>
+    </md-card-content>
+
+  </md-card>
 
 </div>

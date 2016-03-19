@@ -109,6 +109,37 @@
         }, function() {
           $scope.status = 'You cancelled the dialog.';
         });
-  };
+    };
+
+    var avatarDr = '../assets/images/sample-avatar.jpg';
+    var avatarNurse = '../assets/images/sample-avatar2.png';
+
+    $scope.messages = [
+      {
+        avatar: avatarNurse,
+        date: '19/03/2016 : 16h58',
+        job: 'Infirmier(e)',
+        name: 'Nathalie DUPOND',
+        content: 'RAS.'
+      },
+      {
+        avatar: avatarDr,
+        date: '19/03/2016 : 18h34',
+        job: 'Médecin',
+        name: 'Frédéric HOUSE',
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tempor tincidunt erat, non auctor turpis congue et. Fusce varius arcu a lobortis mattis. Nullam pellentesque sem blandit, imperdiet turpis a, efficitur dolor.'
+      },
+      {
+        avatar: avatarNurse,
+        date: '19/03/2016 : 21h02',
+        job: 'Infirmier(e)',
+        name: 'Nathalie DUPOND',
+        content: 'Prise de température : 38,9°C, à surveiller.'
+      }
+    ]
+
+    $scope.messagePost = {
+      content: ''
+    };
 };
 })();

@@ -4,4 +4,29 @@
 		height: 300px;
 	}
 
+  md-list-item:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  md-input-container.md-input-focused {
+    label {
+      color: $green;
+    }
+
+    input {
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 3px solid $green;
+    }
+  }
+
+  i {
+    padding-top: 20px;
+    text-align: center;
+    height: 100%;
+    line-height: 100%;
+    color: $green;
+    font-size: 28px;
+  }
+
 }
