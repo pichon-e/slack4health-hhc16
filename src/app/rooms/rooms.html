@@ -1,36 +1,34 @@
-<div id="rooms">
-    <md-list flex>
-        <md-list-item class="md-2-line" ng-repeat="room in rooms">
-          <img
-          ng-if="room.patient"
-          src="http://placehold.it/80x80"
-          class="md-avatar"
-          alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
-          />
-          <img
-          ng-if="!room.patient"
-          src="assets/images/icon-bed.png"
-          class="md-avatar"
-          alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
-          />
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ room.name }}</h3>
-            <p>{{ room.patient.last_name | uppercase }} {{ room.patient.first_name }}</p>
-          </div>
-        </md-list-item>
-    </md-list>
+<div id="rooms" class="main-wrapper">
+  <md-card>
 
-          <md-fab-speed-dial md-direction="right">
-      <md-fab-trigger>
-        <md-button aria-label="menu" class="md-fab md-primary">
-          <md-icon class="material-icons step">menu</md-icon>
-        </md-button>
-      </md-fab-trigger>
-        <md-fab-actions>
-          <md-button aria-label="comment" class="md-fab md-raised md-mini">
-            <md-icon class="material-icons step">add</md-icon>
-          </md-button>
-        </md-fab-actions>
-    </md-fab-speed-dial>
+    <md-card-header>
+      <h1>Liste des chambres</h1>
+    </md-card-header>
+
+    <md-card-content>
+      <md-list flex>
+          <md-list-item class="md-2-line" ng-repeat="room in rooms">
+            <img
+            ng-if="room.patient"
+            src="assets/images/{{room.patient.picture}}"
+            alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+            />
+            <img
+            ng-if="!room.patient"
+            src="assets/images/empty-room.jpg"
+            alt="{{room.patient.last_name}}-{{room.patient.first_name}}"
+            class="half-opacity"
+            />
+            <div class="md-list-item-text" layout="column">
+              <div ng-if="room.patient" class="isavailable no"></div>
+              <div ng-if="!room.patient" class="isavailable yes"></div>
+              <h3>Chambre N°{{ room.number }}</h3>
+              <p>{{ room.patient.first_name }} {{ room.patient.last_name | uppercase }}</p>
+            </div>
+          </md-list-item>
+      </md-list>
+    </md-card-content>
+
+  </md-card>
 
 </div>
