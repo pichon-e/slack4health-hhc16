@@ -9,20 +9,20 @@
       </div>
     </md-toolbar>
     <md-dialog-content>
-        <md-fab-actions layout="row" layout-sm="column">
-          <md-button aria-label="comment" class="md-fab md-primary md-mini" ng-click="zoomIn($event)">
+        <md-fab-actions layout="row">
+          <md-button aria-label="comment" class="md-fab md-primary md-mini" ng-click="pdfHandle.zoomIn()">
             <md-icon class="material-icons set-icon-fab">add</md-icon>
           </md-button>
           
-          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="zoomOut($event)">
+          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="pdfHandle.zoomOut()">
             <md-icon class="material-icons set-icon-fab">remove</md-icon>
           </md-button>
           
-          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="prev($event)">
+          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="pdfHandle.prev()">
             <md-icon class="material-icons set-icon-fab">chevron_left</md-icon>
           </md-button>
 
-          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="next($event)">
+          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="pdfHandle.next()">
             <md-icon class="material-icons set-icon-fab">chevron_right</md-icon>
           </md-button>
         </md-fab-actions>

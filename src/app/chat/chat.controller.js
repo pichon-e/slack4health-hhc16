@@ -15,7 +15,6 @@
     if (!$scope.$storage.newDoc) {
       $scope.$storage.newDoc = false;
     }
-
     // ChatService.getClient1().on('chat', function(msg) {
     //   var newMessage = {
     //     avatar: '../assets/images/sample-avatar2.png',
@@ -126,7 +125,6 @@
         $scope.status = 'You cancelled the dialog.';
       });
     }
-
     var avatarDr = '../assets/images/sample-avatar.jpg';
     var avatarNurse = '../assets/images/sample-avatar2.png';
 
@@ -161,6 +159,7 @@
       }
     ];
 
+
     $scope.newDocMessage = [];
 
     $scope.newDocMessage = $scope.newDocMessage.concat($scope.$storage.messages);
@@ -193,53 +192,35 @@
         $scope.$storage.messages.push(newResponse);
         $scope.$apply();
       }, 3000);
-    }
+    };
 
     function buildToggler(navID) {
       return function() {
         $mdSidenav(navID)
           .toggle()
-          .then(function () {
-        });
+          .then(function () {});
       }
     }
-  }
+  
 
   // PDF reader
 
-  // $scope.showPdf = function (ev) {
-  //   	$mdDialog.show({
-  //   		controller: PdfController,
-  //   		templateUrl: "app/chat/pdfDialog.tmpl.html",
-  //   		parent: angular.element(document.body),
-  //   		targetEvent: ev,
-  //   		clickOutsideToClose: true,
-  //   		fullscreen: true
-  //   	})
-  //   	.then(function(answer) {
-  //   		console.log(answer);
-  //   	}, function() {
-  //   		console.log('Nope !');
-  //   	});
-  //   };
-
-  //   function PdfController($scope, pdfDelegate, $mdDialog) {
-  // 	$scope.pdfUrl = 'app/chat/ordonnance.pdf';
-  // 	$scope.cancel = function() {
-  //     $mdDialog.cancel();
-  //   };
-  //   var pdfHandle = pdfDelegate.$getByHandle('pdfView');
-
-  //   $scope.zoomIn = function(ev) {
-  //   	pdfHandle.zoomIn();
-  //   };
-  //   $scope.zoomOut = function(ev) {
-  //   	pdfHandle.zoomOut();
-  //   };
-  //   $scope.prev = function(ev) {
-  //   	pdfHandle.prev();
-  //   };
-  //   $scope.next = function(ev) {
-  //   	pdfHandle.next();
-  //   };
+    $scope.showPdf = function (ev, path) {
+      $scope.pdfUrl = path;
+      $mdDialog.show({
+        controller: function ($scope, pdfDelegate, $mdDialog) {
+          $scope.cancel = function() {
+            $mdDialog.cancel();
+          };
+          $scope.pdfHandle = pdfDelegate.$getByHandle('pdfView');
+        },
+        scope: $scope.$new(),
+        templateUrl: "app/chat/pdfDialog.tmpl.html",
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: true
+      });
+    };
+  }
 })();
