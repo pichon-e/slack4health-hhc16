@@ -11,16 +11,14 @@
       </div>
 
     </md-toolbar>
-     <md-dialog-content style="max-width:800px;max-height:810px; ">
+     <md-dialog-content>
     <md-content class="md-padding">
       <md-list flex>
         <md-list-item class="md-3-line" ng-repeat="item in doctors">
-          <a href="#">
-            <div class="md-list-item-text" layout="column">
+            <div class="md-list-item-text" layout="column" ng-click="setNewDoc()">
               <h3 class="md-display-2"><strong>{{ item.specialization }}</strong></h3>
               <h4 class="md-display-2">{{ item.firstName }} {{ item.lastName }}</h4>
             </div>
-          </a>
           </md-list-item>
         </md-content>
       </md-list>

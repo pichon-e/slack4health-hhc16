@@ -6,18 +6,51 @@
     .controller('ChatController', ChatController);
 
   /** @ngInject */
-  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav) {
+  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, ChatService) {
     $scope.$storage = $localStorage;
     if (!$scope.$storage.messages) {
       $scope.$storage.messages = [];
     }
 
-    var client = XMPP.createClient({
-      jid: 'user1@localhost',
-      password: 'user1',
-      transport: 'websocket',
-      wsURL: 'ws://localhost:5280/websocket'
+    if (!$scope.$storage.newDoc) {
+      $scope.$storage.newDoc = false;
+    }
+
+    ChatService.getClient1().on('chat', function(msg) {
+      var newMessage = {
+        avatar: '../assets/images/sample-avatar2.png',
+        date: '19/03/2016 : 16h58',
+        job: 'Médecin généraliste',
+        name: 'Lou LOU',
+        content: msg.body,
+        me: true
+      };
+      $scope.messages.push(newMessage);
+      $scope.$storage.messages.push(newMessage);
+      $scope.$apply();
     });
+
+    ChatService.getClient2().on('chat', function(msg) {
+      var newMessage = {
+        avatar: '../assets/images/sample-avatar2.png',
+        date: '19/03/2016 : 16h58',
+        job: 'Médecin de service',
+        name: 'Malo SEKS',
+        content: msg.body,
+        me: false
+      };
+      $scope.messages.push(newMessage);
+      $scope.$storage.messages.push(newMessage);
+      $scope.$apply();
+    });
+
+    ChatService.getClient1().connect();
+
+    $scope.setNewDoc = function() {
+      $scope.$storage.newDoc = true;
+      $mdDialog.hide();
+      close();
+    }
 
     client.on('session:started', function () {
       client.getRoster();
@@ -34,6 +67,12 @@
       });
       $scope.$apply();
     });
+
+    function close() {
+      $mdSidenav('right').close()
+        .then(function () {
+        });
+    }
 
     client.connect();
 
@@ -87,42 +126,6 @@
           firstName: "Martine",
           lastName: "Paellaso",
           photo: "img/martinePaellaso.jpg"
-        },
-        {
-          specialization: "Oculiste",
-          firstName: "Sylvain",
-          lastName: "Courlis",
-          photo: "img/sylvainCourlis.jpg"
-        },
-        {
-          specialization: "Kinésithérapeute",
-          firstName: "Oskar",
-          lastName: "Euskarien",
-          photo: "img/oskarEuskarien.jpg"
-        },
-        {
-          specialization: "Généraliste",
-          firstName: "Michel",
-          lastName: "Lantier",
-          photo: "img/michelLantier.jpg"
-        },
-        {
-          specialization: "Dermatologue",
-          firstName: "Martine",
-          lastName: "Paellaso",
-          photo: "img/martinePaellaso.jpg"
-        },
-        {
-          specialization: "Oculiste",
-          firstName: "Sylvain",
-          lastName: "Courlis",
-          photo: "img/sylvainCourlis.jpg"
-        },
-        {
-          specialization: "Kinésithérapeute",
-          firstName: "Oskar",
-          lastName: "Euskarien",
-          photo: "img/oskarEuskarien.jpg"
         }
       ];
 
@@ -174,21 +177,19 @@
       }
     ];
 
+        $scope.newDocMessage = [];
+
     $scope.messages = $scope.messages.concat($scope.$storage.messages);
 
     $scope.messagePost = "";
 
     $scope.sendMessage = function() {
-      client.sendMessage({
-        from: 'user1@localhost',
-        to: 'user2@localhost',
-        body: $scope.messagePost
-      });
+      ChatService.sendMessage(1, $scope.messagePost);
       var newMessage = {
         avatar: avatarDr,
         date: $filter('date')(new Date(), "dd/MM/yyyy : HH'h'mm"),
-        job: 'Médecin',
-        name: 'Frédéric HOUSE',
+        job: 'Médecin de service',
+        name: 'Malo SEKS',
         content: $scope.messagePost,
         me:false
       };
@@ -209,40 +210,39 @@
 
   // PDF reader
 
-  $scope.showPdf = function (ev) {
-    	$mdDialog.show({
-    		controller: PdfController,
-    		templateUrl: "app/chat/pdfDialog.tmpl.html",
-    		parent: angular.element(document.body),
-    		targetEvent: ev,
-    		clickOutsideToClose: true,
-    		fullscreen: true
-    	})
-    	.then(function(answer) {
-    		console.log(answer);
-    	}, function() {
-    		console.log('Nope !');
-    	});
-    };
+  // $scope.showPdf = function (ev) {
+  //   	$mdDialog.show({
+  //   		controller: PdfController,
+  //   		templateUrl: "app/chat/pdfDialog.tmpl.html",
+  //   		parent: angular.element(document.body),
+  //   		targetEvent: ev,
+  //   		clickOutsideToClose: true,
+  //   		fullscreen: true
+  //   	})
+  //   	.then(function(answer) {
+  //   		console.log(answer);
+  //   	}, function() {
+  //   		console.log('Nope !');
+  //   	});
+  //   };
 
-    function PdfController($scope, pdfDelegate, $mdDialog) {
-  	$scope.pdfUrl = 'app/chat/ordonnance.pdf';
-  	$scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-    var pdfHandle = pdfDelegate.$getByHandle('pdfView');
+  //   function PdfController($scope, pdfDelegate, $mdDialog) {
+  // 	$scope.pdfUrl = 'app/chat/ordonnance.pdf';
+  // 	$scope.cancel = function() {
+  //     $mdDialog.cancel();
+  //   };
+  //   var pdfHandle = pdfDelegate.$getByHandle('pdfView');
 
-    $scope.zoomIn = function(ev) {
-    	pdfHandle.zoomIn();
-    };
-    $scope.zoomOut = function(ev) {
-    	pdfHandle.zoomOut();
-    };
-    $scope.prev = function(ev) {
-    	pdfHandle.prev();
-    };
-    $scope.next = function(ev) {
-    	pdfHandle.next();
-    };
-  }
+  //   $scope.zoomIn = function(ev) {
+  //   	pdfHandle.zoomIn();
+  //   };
+  //   $scope.zoomOut = function(ev) {
+  //   	pdfHandle.zoomOut();
+  //   };
+  //   $scope.prev = function(ev) {
+  //   	pdfHandle.prev();
+  //   };
+  //   $scope.next = function(ev) {
+  //   	pdfHandle.next();
+  //   };
 })();

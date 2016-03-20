@@ -6,7 +6,17 @@
     .controller('RoomsController', RoomsController);
 
   /** @ngInject */
-  function RoomsController($scope) {
+  function RoomsController($scope, $localStorage, $state) {
+    $scope.$storage = $localStorage;
+    if (!$scope.$storage.patient) {
+      $scope.$storage.patient = "";
+    }
+
+    $scope.setPatient = function($patient) {
+      $scope.$storage.patient = $patient.first_name + " " + $patient.last_name;
+      $state.go("chat");
+    }
+
     $scope.rooms = [
     {
       number: "001",
@@ -37,31 +47,7 @@
     },
     {
       number: "005"
-    },
-    {
-      number: "006",
-      patient: {
-          first_name: "Julie",
-          last_name:"Weil",
-          picture: "patient1.jpg"
-      }
-    },
-    {
-      number: "007",
-      patient: {
-          first_name: "Alexis",
-          last_name:"Dupond",
-          picture: "patient2.jpg"
-      }
-    },
-    {
-      number: "008",
-      patient: {
-          first_name: "Maugane",
-          last_name:"Delgrange",
-          picture: "patient3.jpg"
-      }
-    },
+    }
    ]
   }
 })();
