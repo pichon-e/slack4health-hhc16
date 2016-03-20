@@ -6,7 +6,7 @@
     .controller('ChatController', ChatController);
 
   /** @ngInject */
-  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, $timeout) {
+  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, $timeout, $mdToast, $state) {
     $scope.$storage = $localStorage;
     if (!$scope.$storage.messages) {
       $scope.$storage.messages = [];
@@ -46,6 +46,10 @@
 
     // ChatService.getClient1().connect();
     // ChatService.getClient2().connect();
+
+    $scope.goToBio = function() {
+      $state.go('bio');
+    }
 
     $scope.setNewDoc = function() {
       $scope.$storage.newDoc = true;
@@ -172,7 +176,7 @@
         avatar: avatarDr,
         date: $filter('date')(new Date(), "dd/MM/yyyy : HH'h'mm"),
         job: 'Médecin de service',
-        name: 'Malo SEKS',
+        name: 'Frederic House',
         content: $scope.messagePost,
         me:false
       };
@@ -180,8 +184,8 @@
         avatar: avatarDr,
         date: $filter('date')(new Date(), "dd/MM/yyyy : HH'h'mm"),
         job: 'Médecin généraliste',
-        name: 'Lou LOU',
-        content: 'Je vous envoie ça de suite !',
+        name: 'Michel Lantier',
+        content: 'app/chat/ordonnance.pdf',
         me:true
       };
       $scope.newDocMessage.push(newMessage);
@@ -191,7 +195,7 @@
         $scope.newDocMessage.push(newResponse);
         $scope.$storage.messages.push(newResponse);
         $scope.$apply();
-      }, 3000);
+      }, 8000);
     };
 
     function buildToggler(navID) {
@@ -201,12 +205,22 @@
           .then(function () {});
       }
     }
-  
+
 
   // PDF reader
 
     $scope.showPdf = function (ev, path) {
       $scope.pdfUrl = path;
+      if ($scope.pdfUrl === 'app/chat/ordonnance.pdf') {
+        $timeout(function() {
+          $mdToast.show(
+           $mdToast.simple()
+             .content('Une nouvelle biologie est arrivée !')
+             .position('top right')
+             .hideDelay(3000)
+           );
+        }, 4000)
+      }
       $mdDialog.show({
         controller: function ($scope, pdfDelegate, $mdDialog) {
           $scope.cancel = function() {

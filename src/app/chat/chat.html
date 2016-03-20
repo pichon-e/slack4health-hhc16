@@ -1,4 +1,4 @@
-<div id="chat" class="main-wrapper">
+<div id="chat" class="main-wrapper" ng-swipe-left="goToBio()">
  	<section layout="row" flex>
 
 		<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
@@ -52,7 +52,8 @@
 					<div flex="70" class="md-list-item-text" layout="column">
 						<h3><strong>{{ message.name }}</strong> <em>{{ message.job }}</em></h3>
 						<h4>{{ message.date }}</h4>
-						<p>{{ message.content }}</p>
+						<p ng-click="showPdf($event, message.content)" ng-if="message.name == 'Michel Lantier'">Voir le pdf</p>
+						<p ng-if="message.name == 'Frederic House'">{{message.content}}</p>
 					</div>
 				</md-card>
 
