@@ -91,7 +91,7 @@
           photo: "img/martinePaellaso.jpg"
         },
         {
-          specialization: "Oculiste",
+          specialization: "Ophtalmologue",
           firstName: "Sylvain",
           lastName: "Courlis",
           photo: "img/sylvainCourlis.jpg"
@@ -101,18 +101,6 @@
           firstName: "Oskar",
           lastName: "Euskarien",
           photo: "img/oskarEuskarien.jpg"
-        },
-        {
-          specialization: "Généraliste",
-          firstName: "Michel",
-          lastName: "Lantier",
-          photo: "img/michelLantier.jpg"
-        },
-        {
-          specialization: "Dermatologue",
-          firstName: "Martine",
-          lastName: "Paellaso",
-          photo: "img/martinePaellaso.jpg"
         }
       ];
 
