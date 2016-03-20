@@ -1,5 +1,5 @@
 <div id="bio" ng-swipe-left="changeToLeft()" ng-swipe-right="changeToRight()">
-	<md-card>
+	<md-card ng-click="showPdf($event, 'src/assets/images/A16031901102-1.png')">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Resultat 10/06/2015</span>
@@ -11,7 +11,7 @@
           </div>
         </md-card-content>
       </md-card>
-	<md-card>
+	<md-card ng-click="showPdf($event, 'assets/images/a16031901104.pdf')">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">Resultat 23/02/2016</span>
@@ -19,7 +19,7 @@
         </md-card-title>
         <md-card-content layout="row" layout-align="space-between">
           <div class="md-media-xl card-media">
-          	<img src="assets/images/A16031901102-2.png">
+          	<img src="assets/images/A16031901103-1.png">
           </div>
         </md-card-content>
       </md-card>
