@@ -25,7 +25,7 @@
         content: msg.body,
         me: true
       };
-      $scope.messages.push(newMessage);
+      $scope.newDocMessage.push(newMessage);
       $scope.$storage.messages.push(newMessage);
       $scope.$apply();
     });
@@ -39,12 +39,13 @@
         content: msg.body,
         me: false
       };
-      $scope.messages.push(newMessage);
+      $scope.newDocMessage.push(newMessage);
       $scope.$storage.messages.push(newMessage);
       $scope.$apply();
     });
 
     ChatService.getClient1().connect();
+    ChatService.getClient2().connect();
 
     $scope.setNewDoc = function() {
       $scope.$storage.newDoc = true;
@@ -159,9 +160,9 @@
       }
     ];
 
-        $scope.newDocMessage = [];
+    $scope.newDocMessage = [];
 
-    $scope.messages = $scope.messages.concat($scope.$storage.messages);
+    $scope.newDocMessage = $scope.newDocMessage.concat($scope.$storage.messages);
 
     $scope.messagePost = "";
 
@@ -175,7 +176,7 @@
         content: $scope.messagePost,
         me:false
       };
-      $scope.messages.push(newMessage);
+      $scope.newDocMessage.push(newMessage);
       $scope.$storage.messages.push(newMessage);
       $scope.messagePost = "";
     }
