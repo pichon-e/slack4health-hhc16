@@ -13,8 +13,20 @@
           "dosage": "30mg",
           "forme": "comprimé",
           "posologie": "3-0-0"
-        }
-      ];  
+        },
+        {
+          "name": "Januvia",
+          "dosage": "100mg",
+          "forme": "comprimé",
+          "posologie": "1-0-0"
+        },
+        {
+          "name": "Metformine",
+          "dosage": "1000mg",
+          "forme": "comprimé",
+          "posologie": "1-1-1"
+        },
+      ];
 
     var self = this;
 
@@ -34,7 +46,7 @@
      * Return the proper object when the append is called.
      */
     function transformChip(chip) {
-    	console.log("test");	
+    	console.log("test");
       // If it is an object, it's already a known chip
       if (angular.isObject(chip)) {
         return chip;
@@ -123,8 +135,20 @@
           "dosage": "1000cm",
           "forme": "suppositoire",
           "posologie": "1-1-1"
+        },
+        {
+          "name": "Triatec",
+          "dosage": "2,5mg",
+          "forme": "comprimé",
+          "posologie": "1-0-0"
+        },
+        {
+          "name": "Bactrim Forte",
+          "dosage": "N/A",
+          "forme": "comprimé",
+          "posologie": "2-0-2"
         }
-      ];  
+      ];
 
       return pharmaceuticals.map(function (pharm) {
         pharm._lowername = pharm.name.toLowerCase();
@@ -133,4 +157,3 @@
     }
   }
 })();
-
