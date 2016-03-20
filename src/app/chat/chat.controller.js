@@ -52,29 +52,11 @@
       close();
     }
 
-    client.on('session:started', function () {
-      client.getRoster();
-      client.sendPresence();
-    });
-
-    client.on('chat', function(msg) {
-      $scope.messages.push({
-        avatar: '../assets/images/sample-avatar2.png',
-        date: '19/03/2016 : 16h58',
-        job: 'Infirmier(e)',
-        name: 'Nathalie DUPOND',
-        content: msg.body
-      });
-      $scope.$apply();
-    });
-
     function close() {
       $mdSidenav('right').close()
         .then(function () {
         });
     }
-
-    client.connect();
 
     $scope.hide = function() {
       $mdDialog.hide();
