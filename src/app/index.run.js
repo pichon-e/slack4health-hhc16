@@ -3,7 +3,9 @@
 
   angular
     .module('slack4healthHhc')
-    .run(runBlock);
+    .run(runBlock, function($rootScope){
+    	$rootScope.title = "Slack4Health";
+    });
 
   /** @ngInject */
   function runBlock($log) {
