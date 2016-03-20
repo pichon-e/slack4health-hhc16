@@ -1,42 +1,48 @@
-<div id="prescription" ng-controller="PrescriptionController as ctrl" >
+<div id="prescription" class="main-wrapper" ng-controller="PrescriptionController as ctrl" >
+  
+  <md-card>
 
-    <md-toolbar layout="row" class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <span>Prescription</span>
-      </div>
-    </md-toolbar>
+    <md-card-header>
+      <h1>Prescriptions</h1>
+    </md-card-header>
 
-    <md-content>
-      <md-list flex="">
-        <md-list-item class="md-2-line" ng-repeat="item in medicaments">
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ item.name }}</h3>
-            <h4>{{ item.dosage + " " + item.forme + " " + item.posologie }}</h4>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
+    <md-card-content>
 
-
-
- <md-content class="md-padding" layout="column">
-
-    <br>
-
-    <md-chips ng-model="ctrl.selectedVegetables" md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" md-require-match="ctrl.autocompleteDemoRequireMatch">
-      <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" placeholder="Séléctionnez un médicament">
-        <span md-highlight-text="ctrl.searchText">{{item.name}} - {{item.dosage}}</span>
-      </md-autocomplete>
-      <md-chip-template>
-        <span>
-          <strong>{{$chip.name}}</strong>
-          <em>({{$chip.dosage}})</em>
-        </span>
-      </md-chip-template>
-    </md-chips>
-    <md-button ng-click="addPharmaceuticals($event)" class="md-raised">Ajouter</md-button>
+      <md-content>
+        <md-list flex="">
+          <md-list-item class="md-2-line" ng-repeat="item in medicaments">
+            <div class="md-list-item-text" layout="column">
+              <h3>{{ item.name }}</h3>
+              <h4>{{ item.dosage + " " + item.forme + " " + item.posologie }}</h4>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-content>
 
 
-  </md-content>
+
+     <md-content class="md-padding" layout="column">
+
+        <br>
+
+        <md-chips ng-model="ctrl.selectedVegetables" md-autocomplete-snap="" md-transform-chip="ctrl.transformChip($chip)" md-require-match="ctrl.autocompleteDemoRequireMatch">
+          <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)" md-item-text="item.name" placeholder="Séléctionnez un médicament">
+            <span md-highlight-text="ctrl.searchText">{{item.name}} - {{item.dosage}}</span>
+          </md-autocomplete>
+          <md-chip-template>
+            <span>
+              <strong>{{$chip.name}}</strong>
+              <em>({{$chip.dosage}})</em>
+            </span>
+          </md-chip-template>
+        </md-chips>
+        <md-button ng-click="addPharmaceuticals($event)" class="md-raised">Ajouter</md-button>
+
+
+      </md-content>
+
+    </md-card-content>
+
+  </md-card>
 
 </div>

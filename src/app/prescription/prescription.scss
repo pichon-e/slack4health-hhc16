@@ -2,4 +2,49 @@
 	width: 100%;
 	height: calc(100vh - 50px);
 	overflow: auto;
+
+	.md-list-item-text {
+		padding-left: 30px;
+
+		&:before, &:after {
+			content: '';
+			display: block;
+			height: 10px;
+			width: 10px;
+			position: absolute;
+			left: 15px;
+			transform: rotate(45deg);
+		}
+
+		&:before {
+			background: $green;
+			border-bottom-left-radius: 15px;
+			border-bottom-right-radius: 15px;
+			top: 32px;
+			left: 16px;
+		}
+
+		&:after {
+			background: $red;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+			top: 25px;
+			left: 23px;
+		}
+
+		h3 {
+			font-weight: 700;
+		}
+	}
+	
+
+	.md-chips.md-chips.md-focused {
+        height: 40px;
+        line-height: 40px;
+        box-shadow: 0 2px $green;
+    }
+
+    button {
+    	margin-top: 30px;
+    }
 }

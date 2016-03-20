@@ -1,9 +1,37 @@
+.chat-card {
+    height: calc(100vh - 140px);
+  max-height: calc(100vh - 140px);
+}
+
+section md-toolbar h1, .md-button.md-raised:not([disabled]) {
+  background-color: #19B1D1;
+}
+
+.md-button.md-raised:not([disabled]) {
+  float: right;
+}
+
+.md-button.md-primary.md-raised:not([disabled]):hover {
+    background-color: #19B1D1;
+    opacity: 0.9;
+}
+
 #chat {
   height: calc(100vh - 140px);
   max-height: calc(100vh - 140px);
   overflow: auto;
+
+  .channel {
+    background-color: #eeeeee;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25), 0 1px 1px rgba(0, 0, 0, 0.22);
+  }
 	
 	md-card {
+    width: 100%;
 
     md-card-content {
 
@@ -66,12 +94,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin-right: 25px;
-    margin-top: 18px;
   }
 
   i {
-    padding-top: 20px;
+    padding-top: 15px;
     text-align: center;
     height: 100%;
     line-height: 100%;
@@ -90,4 +116,25 @@
     padding: 0;
   }
 
+  .md-sidenav-right, .md-sidenav-right md-content {
+    background-color: #555555;
+  } 
+
+}
+
+md-dialog.full-dialog {
+  max-height: 100%;
+  max-width: 100%;
+  width: 95%;
+  height: 95%;
+}
+md-dialog.fullscreen-dialog {
+    max-height: 100%;
+    height: 100%;
+    max-width: 100%;
+    width: 100%;
+}
+
+.set-icon-fab {
+    font-size: 1rem;
 }

@@ -1,0 +1,35 @@
+<md-dialog ng-cloak class="fullscreen-dialog">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2></h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">close</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <md-fab-actions layout="row" layout-sm="column">
+          <md-button aria-label="comment" class="md-fab md-primary md-mini" ng-click="zoomIn($event)">
+            <md-icon class="material-icons set-icon-fab">add</md-icon>
+          </md-button>
+          
+          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="zoomOut($event)">
+            <md-icon class="material-icons set-icon-fab">remove</md-icon>
+          </md-button>
+          
+          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="prev($event)">
+            <md-icon class="material-icons set-icon-fab">chevron_left</md-icon>
+          </md-button>
+
+          <md-button aria-label="comment" class="md-fab md-primary md-mini"  ng-click="next($event)">
+            <md-icon class="material-icons set-icon-fab">chevron_right</md-icon>
+          </md-button>
+        </md-fab-actions>
+	  <pdf-viewer
+	    delegate-handle="pdfView"
+	    url="pdfUrl"
+	    scale="1"
+	    show-toolbar="false"></pdf-viewer>
+    </md-dialog-content>
+</md-dialog>

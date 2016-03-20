@@ -7,6 +7,7 @@
 
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
+
     $stateProvider
       .state('rooms', {
         url: '/',
