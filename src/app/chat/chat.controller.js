@@ -6,7 +6,7 @@
     .controller('ChatController', ChatController);
 
   /** @ngInject */
-  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, $timeout) {
+  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, $timeout, $mdToast) {
     $scope.$storage = $localStorage;
     if (!$scope.$storage.messages) {
       $scope.$storage.messages = [];
@@ -137,7 +137,7 @@
     $scope.messages = [
       {
         avatar: avatarNurse,
-        date: '19/03/2016 : 16h58',
+        date: '18/03/2016 : 08h02',
         job: 'Infirmier(e)',
         name: 'Nathalie DUPOND',
         content: 'RAS.',
@@ -145,18 +145,18 @@
       },
       {
         avatar: avatarDr,
-        date: '19/03/2016 : 18h34',
+        date: '18/03/2016 : 08h34',
         job: 'Médecin',
         name: 'Frédéric HOUSE',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tempor tincidunt erat, non auctor turpis congue et. Fusce varius arcu a lobortis mattis. Nullam pellentesque sem blandit, imperdiet turpis a, efficitur dolor.',
+        content: 'Quelle est la TA du patient ?',
         me:false
       },
       {
         avatar: avatarNurse,
-        date: '19/03/2016 : 21h02',
+        date: '18/03/2016 : 08h42',
         job: 'Infirmier(e)',
         name: 'Nathalie DUPOND',
-        content: 'Prise de température : 38,9°C, à surveiller.',
+        content: 'La TA du patient est à <strong>18/12</strong>.',
         me:true
       }
     ];
@@ -192,7 +192,15 @@
         $scope.newDocMessage.push(newResponse);
         $scope.$storage.messages.push(newResponse);
         $scope.$apply();
-      }, 3000);
+        $timeout(function() {
+          $mdToast.show(
+            $mdToast.simple()
+              .content('Une nouvelle biologie est arrivée !')
+              .position('top right')
+              .hideDelay(3000)
+          );
+        }, 1000)
+      }, 8000);
     }
 
     function buildToggler(navID) {
