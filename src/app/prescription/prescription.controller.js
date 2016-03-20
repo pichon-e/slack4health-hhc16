@@ -117,6 +117,12 @@
           "dosage": "1000mg",
           "forme": "comprimé",
           "posologie": "1-1-1"
+        },
+        {
+          "name": "Abrantosine",
+          "dosage": "1000cm",
+          "forme": "suppositoire",
+          "posologie": "1-1-1"
         }
       ];  
 

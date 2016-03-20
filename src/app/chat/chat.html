@@ -1,78 +1,75 @@
 <div id="chat" class="main-wrapper">
+ 	<section layout="row" flex>
 
-        <div>
-          <md-button ng-click="toggleRight()"
+		<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+      		<md-toolbar class="md-theme-light">
+        		<h1 class="md-toolbar-tools">Channels</h1>
+      		</md-toolbar>
+      		<md-content layout-padding>
+      			<div layout="column">
+      				<div class="channel" flex="90">
+      					Dr
+      				</div>
+       				<div class="channel" flex="90">
+       					Dr
+      				</div>
+      			</div>
+	        	<form>
+		    		<md-button class=" md-primary md-raised" ng-click="showTabDialog($event)">
+		      			Chercher un médecin
+		    		</md-button>
+	        	</form>
+      		</md-content>
+    	</md-sidenav>
+
+        <md-button ng-click="toggleRight()"
             ng-hide="isOpenRight()"
-            class="md-primary">
-            	Toggle right
-          </md-button>
-        </div>
-
-<md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Sidenav Right</h1>
-      </md-toolbar>
-      <md-content layout-padding>
-        <form>
-          <md-input-container>
-            <label for="testInput">Test input</label>
-            <input type="text" id="testInput"
-                   ng-model="data" md-autofocus>
-          </md-input-container>
-        </form>
-        <md-button ng-click="close()" class="md-primary">
-          Close Sidenav Right
+            class="medecin-button md-primary">
+            	<i class="material-icons">menu</i>
         </md-button>
-      </md-content>
-    </md-sidenav>
 
-    <md-button class="medecin-button md-primary md-raised" ng-click="showTabDialog($event)">
-      	Contacts
-    </md-button>
+		<md-card>
 
-	<md-card>
+			<md-card-header>
+				<h1>Salon de discussion</h1>
+			</md-card-header>
 
-		<md-card-header>
-			<h1>Salon de discussion</h1>
-		</md-card-header>
+			<md-card-content>
 
-		<md-card-content>
+				<md-card ng-repeat="message in messages" class="message" 
+					ng-class="message.me ? 'right' : 'left'" 
+					layout="column" layout-align="center center">
+					<div flex="70" class="md-list-item-text" layout="column">
+						<h3><strong>{{ message.name }}</strong> <em>{{ message.job }}</em></h3>
+						<h4>{{ message.date }}</h4>
+						<p>{{ message.content }}</p>
+					</div>
+				</md-card>
 
-			<md-card ng-repeat="message in messages" class="message" 
-				ng-class="message.me ? 'right' : 'left'" 
-				layout="column" layout-align="center center">
-				<div flex="70" class="md-list-item-text" layout="column">
-					<h3><strong>{{ message.name }}</strong> <em>{{ message.job }}</em></h3>
-					<h4>{{ message.date }}</h4>
-					<p>{{ message.content }}</p>
+			</md-card-content>
+
+			<md-card-footer>
+				<div layout="row">
+					<div flex="90">
+						<form name="userForm">
+							<md-input-container class="md-block" flex-gt-sm>
+								<label>Votre message</label>
+								<input type="text" ng-model="messagePost" />
+							</md-input-container>
+						</form>
+					</div>
+					<div flex="10">
+						<i class="material-icons" ng-click="sendMessage()">send</i>
+					</div>
 				</div>
-			</md-card>
 
-		</md-card-content>
 
-		<md-card-footer>
-			<div layout="row">
-				<div flex="90">
-					<form name="userForm">
-						<md-input-container class="md-block" flex-gt-sm>
-							<label>Votre message</label>
-							<input ng-model="messagePosted">
-						</md-input-container>
-					</form>
-				</div>
-				<div flex="10">
-					<i class="material-icons">send</i>
-				</div>
-			</div>
-
-			
-		</md-card-footer>
-
-	</md-card>
-
+			</md-card-footer>
+		</md-card>
+	</section>
+</div>
+<!--
 <md-button class="md-raised md-primary" ng-click="showPdf($event)">
   Show PDF
 </md-button>
-
-
-</div>
+-->
