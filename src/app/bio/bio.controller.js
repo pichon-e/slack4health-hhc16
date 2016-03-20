@@ -6,9 +6,17 @@
     .controller('BioController', BioController);
 
   /** @ngInject */
-  function BioController($scope, $mdDialog) {
+  function BioController($scope, $mdDialog, $state) {
 
   	  // PDF reader
+
+    $scope.changeToLeft = function() {
+      $state.go('prescription');
+    }
+
+    $scope.changeToRight = function() {
+      $state.go('chat');
+    }
 
     $scope.showPdf = function (ev, path) {
       $scope.pdfUrl = path;
