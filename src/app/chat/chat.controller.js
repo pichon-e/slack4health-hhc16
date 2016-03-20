@@ -6,7 +6,7 @@
     .controller('ChatController', ChatController);
 
   /** @ngInject */
-  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, ChatService) {
+  function ChatController($scope, $mdDialog, $filter, $localStorage, $mdSidenav, $timeout) {
     $scope.$storage = $localStorage;
     if (!$scope.$storage.messages) {
       $scope.$storage.messages = [];
@@ -16,36 +16,37 @@
       $scope.$storage.newDoc = false;
     }
 
-    ChatService.getClient1().on('chat', function(msg) {
-      var newMessage = {
-        avatar: '../assets/images/sample-avatar2.png',
-        date: '19/03/2016 : 16h58',
-        job: 'Médecin généraliste',
-        name: 'Lou LOU',
-        content: msg.body,
-        me: true
-      };
-      $scope.newDocMessage.push(newMessage);
-      $scope.$storage.messages.push(newMessage);
-      $scope.$apply();
-    });
+    // ChatService.getClient1().on('chat', function(msg) {
+    //   var newMessage = {
+    //     avatar: '../assets/images/sample-avatar2.png',
+    //     date: '19/03/2016 : 16h58',
+    //     job: 'Médecin généraliste',
+    //     name: 'Lou LOU',
+    //     content: msg.body,
+    //     me: true
+    //   };
+    //   $scope.newDocMessage.push(newMessage);
+    //   $scope.$storage.messages.push(newMessage);
+    //   $scope.$apply();
+    // });
+    //
+    // ChatService.getClient2().on('chat', function(msg) {
+    //   console.log(msg);
+    //   var newMessage = {
+    //     avatar: '../assets/images/sample-avatar2.png',
+    //     date: '19/03/2016 : 16h58',
+    //     job: 'Médecin de service',
+    //     name: 'Malo SEKS',
+    //     content: msg.body,
+    //     me: false
+    //   };
+    //   $scope.newDocMessage.push(newMessage);
+    //   $scope.$storage.messages.push(newMessage);
+    //   $scope.$apply();
+    // });
 
-    ChatService.getClient2().on('chat', function(msg) {
-      var newMessage = {
-        avatar: '../assets/images/sample-avatar2.png',
-        date: '19/03/2016 : 16h58',
-        job: 'Médecin de service',
-        name: 'Malo SEKS',
-        content: msg.body,
-        me: false
-      };
-      $scope.newDocMessage.push(newMessage);
-      $scope.$storage.messages.push(newMessage);
-      $scope.$apply();
-    });
-
-    ChatService.getClient1().connect();
-    ChatService.getClient2().connect();
+    // ChatService.getClient1().connect();
+    // ChatService.getClient2().connect();
 
     $scope.setNewDoc = function() {
       $scope.$storage.newDoc = true;
@@ -167,7 +168,7 @@
     $scope.messagePost = "";
 
     $scope.sendMessage = function() {
-      ChatService.sendMessage(1, $scope.messagePost);
+      // ChatService.sendMessage(1, $scope.messagePost);
       var newMessage = {
         avatar: avatarDr,
         date: $filter('date')(new Date(), "dd/MM/yyyy : HH'h'mm"),
@@ -176,9 +177,22 @@
         content: $scope.messagePost,
         me:false
       };
+      var newResponse = {
+        avatar: avatarDr,
+        date: $filter('date')(new Date(), "dd/MM/yyyy : HH'h'mm"),
+        job: 'Médecin généraliste',
+        name: 'Lou LOU',
+        content: 'Je vous envoie ça de suite !',
+        me:true
+      };
       $scope.newDocMessage.push(newMessage);
       $scope.$storage.messages.push(newMessage);
       $scope.messagePost = "";
+      $timeout(function() {
+        $scope.newDocMessage.push(newResponse);
+        $scope.$storage.messages.push(newResponse);
+        $scope.$apply();
+      }, 3000);
     }
 
     function buildToggler(navID) {
