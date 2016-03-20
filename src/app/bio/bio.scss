@@ -1,4 +1,13 @@
-.bio {
+#bio {
 	width: 100%;
-	height: 100%;
+    height: calc(100vh - 140px);
+   	max-height: calc(100vh - 140px);
+   	overflow: auto;
+	text-align: center;
+
+	img {
+		width: 85vw;
+		margin: 0 auto;
+		text-align: center;
+	}
 }

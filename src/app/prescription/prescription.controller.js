@@ -6,7 +6,8 @@
     .controller('PrescriptionController', PrescriptionController);
 
   /** @ngInject */
-  function PrescriptionController($scope, $mdDialog) {
+  function PrescriptionController($scope, $mdDialog, $state) {
+
     $scope.medicaments = [
         {
           "name": "Diamicron",
@@ -29,6 +30,10 @@
       ];
 
     var self = this;
+
+    self.changeToRight = function() {
+      $state.go('bio');
+    }
 
     self.readonly = false;
     self.selectedItem = null;
